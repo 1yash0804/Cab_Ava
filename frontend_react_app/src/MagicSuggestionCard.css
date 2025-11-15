@@ -1,0 +1,100 @@
+/* --- 1. Magic Suggestion Card Styles --- */
+:root {
+  --purple-glow: rgba(132, 0, 255, 0.2);
+  --border-color: #392e4e;
+  --background-dark: #060010;
+}
+
+.magic-suggestion-card {
+  background: var(--background-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* Glow properties */
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
+  --glow-color: 132, 0, 255;
+}
+
+.magic-suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Particle */
+.particle {
+  position: absolute;
+}
+
+/* Border glow effect */
+.magic-suggestion-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 6px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.4)) 0%, /* Less intense glow */
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.2)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: subtract;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magic-suggestion-card:hover::after {
+  opacity: 1;
+}
+
+.magic-suggestion-card:hover {
+  box-shadow:
+    0 4px 20px rgba(46, 24, 78, 0.4),
+    0 0 30px var(--purple-glow);
+}
+
+
+/* --- 2. Content Styles (from App.css) --- */
+.magic-suggestion-card-text {
+  position: relative;
+  z-index: 2;
+}
+
+.magic-suggestion-card-text h3 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  color: #eaeaea;
+}
+
+.magic-suggestion-card-text p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.magic-suggestion-card-icon {
+  font-size: 48px;
+  color: #0070f3; /* --color-primary */
+  position: relative;
+  z-index: 2;
+}

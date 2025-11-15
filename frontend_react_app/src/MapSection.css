@@ -1,0 +1,35 @@
+.map-section {
+  padding: 80px 5%;
+  background-color: transparent; 
+  border-top: 1px solid var(--color-border);
+}
+.map-section h2 {
+  font-size: 40px;
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+.map-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-light-dark); /* Placeholder color */
+}
+
+/* This will show because you don't have an API key */
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+.map-placeholder p {
+  margin: 5px;
+}

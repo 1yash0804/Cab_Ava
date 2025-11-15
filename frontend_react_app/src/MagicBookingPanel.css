@@ -1,0 +1,185 @@
+/* --- 1. Magic Card Styles (from MagicBento.css) --- */
+:root {
+  --purple-glow: rgba(132, 0, 255, 0.2);
+  --border-color: #392e4e;
+  --background-dark: #060010;
+}
+
+.magic-booking-panel {
+  background: var(--background-dark);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  /* Glow properties */
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
+  --glow-color: 132, 0, 255;
+}
+
+.magic-booking-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Particle container */
+.particle {
+  position: absolute;
+}
+
+/* Border glow effect */
+.magic-booking-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 6px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: subtract;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magic-booking-panel:hover::after {
+  opacity: 1;
+}
+
+.magic-booking-panel:hover {
+  box-shadow:
+    0 4px 20px rgba(46, 24, 78, 0.4),
+    0 0 30px var(--purple-glow);
+}
+
+
+/* --- 2. Form Styles (from App.css) --- */
+.magic-booking-panel h2 {
+  font-size: 32px;
+  margin: 0 0 24px 0;
+  color: #eaeaea; /* Ensure text is visible */
+  position: relative; /* for z-index */
+  z-index: 2; /* Keep form above glow */
+}
+
+.form-group { 
+  margin-bottom: 16px; 
+  position: relative; /* for z-index */
+  z-index: 2; /* Keep form above glow */
+}
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #888; /* --color-text-muted */
+}
+.form-group input,
+.form-group select { /* Apply to select as well */
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #333; /* --color-border */
+  background-color: #2a2a2a; /* --color-light-dark */
+  border-radius: 8px;
+  font-size: 16px;
+  color: #eaeaea; /* --color-text */
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  appearance: none; /* Remove default select styles */
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0070f3; /* --color-primary */
+  box-shadow: 0 0 10px rgba(0, 112, 243, 0.5);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #0070f3; /* --color-primary */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative; /* for z-index */
+  z-index: 2; /* Keep form above glow */
+}
+.btn-submit:hover { 
+  background-color: #0056d1; /* --color-primary-hover */
+  box-shadow: 0 0 15px rgba(0, 112, 243, 0.5);
+}
+.btn-submit:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* --- 3. Reliability Widget Styles (from App.css) --- */
+.reliability-widget {
+  border: 1px solid #333; /* --color-border */
+  border-radius: 8px;
+  margin-top: 24px;
+  background: #2a2a2a; /* --color-light-dark */
+  position: relative; /* for z-index */
+  z-index: 2; /* Keep form above glow */
+}
+.reliability-header, .reliability-reason, .reliability-actions { padding: 16px; }
+.reliability-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333; /* --color-border */
+}
+.reliability-header span { font-size: 16px; font-weight: 600; }
+.reliability-header strong { font-size: 18px; }
+.reliability-reason {
+  font-size: 14px;
+  color: #888; /* --color-text-muted */
+  margin: 0;
+  border-bottom: 1px solid #333; /* --color-border */
+  text-transform: capitalize;
+}
+.reliability-actions { display: flex; gap: 12px; }
+.reliability-actions button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-secondary {
+  background: #2a2a2a; /* --color-light-dark */
+  border: 1px solid #888; /* --color-text-muted */
+  color: #eaeaea; /* --color-text */
+}
+.btn-secondary:hover { background: #3a3a3a; }
+.btn-primary {
+  background: #eaeaea; /* --color-text */
+  border: 1px solid #eaeaea; /* --color-text */
+  color: #000; /* --color-dark */
+}
+.btn-primary:hover { background: #ccc; }
+
