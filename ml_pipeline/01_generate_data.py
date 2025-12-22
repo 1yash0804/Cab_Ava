@@ -4,7 +4,6 @@ import random
 from math import radians, sin, cos, sqrt, asin
 
 print("Generating 50,000 synthetic bookings for Delhi...")
-print("This may take 10-20 seconds. Please wait...")
 
 # --- 1. Haversine function to calculate distance ---
 def haversine(lat1, lon1, lat2, lon2):
